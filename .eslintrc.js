@@ -18,5 +18,6 @@ module.exports = {
     'no-param-reassign': 'off',
     'import/extensions': 'off',
     'no-unused-vars': 'off',
+    'no-empty-function': 'off',
   },
 };
