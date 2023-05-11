@@ -17,5 +17,6 @@ module.exports = {
     'import/first': 'off',
     'no-param-reassign': 'off',
     'import/extensions': 'off',
+    'no-unused-vars': 'off',
   },
 };
