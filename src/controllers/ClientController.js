@@ -1,15 +1,17 @@
 import Client from '../models/Client';
+import Photo from '../models/Photo';
 
 class ClientController {
   async index(req, res) {
-    try {
-      const clients = await Client.findAll();
-      return res.send(clients);
-    } catch (e) {
-      return res.status(400).json({
-        errors: e.errors.map((err) => err.message),
-      });
-    }
+    const clients = await Client.findAll({
+      attributes: ['id', 'first_name', 'last_name', 'email', 'age', 'weight', 'height'],
+      order: [['id', 'DESC'], [Photo, 'id', 'DESC']],
+      include: {
+        model: Photo,
+        attributes: ['filename'],
+      },
+    });
+    return res.send(clients);
   }
 
   async store(req, res) {
@@ -33,7 +35,14 @@ class ClientController {
         });
       }
 
-      const client = await Client.findByPk(id);
+      const client = await Client.findByPk(id, {
+        attributes: ['id', 'first_name', 'last_name', 'email', 'age', 'weight', 'height'],
+        order: [['id', 'DESC'], [Photo, 'id', 'DESC']],
+        include: {
+          model: Photo,
+          attributes: ['filename'],
+        },
+      });
 
       if (!client) {
         return res.status(400).json({

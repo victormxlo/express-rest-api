@@ -12,11 +12,17 @@ class PhotoController {
           errors: [err.code],
         });
       }
-      const { originalname, filename } = req.file;
-      const { client_id } = req.body;
-      const photo = await Photo.create({ originalname, filename, client_id });
+      try {
+        const { originalname, filename } = req.file;
+        const { client_id } = req.body;
+        const photo = await Photo.create({ originalname, filename, client_id });
 
-      return res.json(photo);
+        return res.json(photo);
+      } catch (e) {
+        return res.status(400).json({
+          errors: ['The client does not exist.'],
+        });
+      }
     });
   }
 }
