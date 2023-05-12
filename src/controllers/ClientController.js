@@ -8,7 +8,7 @@ class ClientController {
       order: [['id', 'DESC'], [Photo, 'id', 'DESC']],
       include: {
         model: Photo,
-        attributes: ['filename'],
+        attributes: ['url', 'filename'],
       },
     });
     return res.send(clients);
@@ -40,7 +40,7 @@ class ClientController {
         order: [['id', 'DESC'], [Photo, 'id', 'DESC']],
         include: {
           model: Photo,
-          attributes: ['filename'],
+          attributes: ['url', 'filename'],
         },
       });
 
