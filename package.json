@@ -1,11 +1,13 @@
 {
-  "name": "express-api-rest",
+  "name": "rest-api",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "build": "sucrase ./src -d ./dist --transforms imports",
+    "start": "node dist/server.js"
   },
   "keywords": [],
   "author": "",
